@@ -75,7 +75,7 @@ Sample JSON:
 
 ```json
 {
-  "name": "srivignesh"
+  "message":"i'm srivignesh,currently doing an internship at dotworld technologies"
 }
 ```
 
@@ -96,10 +96,52 @@ Sample JSON:
 
 ---
 
-## 🚀 Next Plan
+## on terminal
 
-* Learn proper goroutine control using `WaitGroup`
-* Build full CRUD APIs (Create, Read, Update, Delete)
-* Improve project structure for real-world backend applications
+```
+GO gin
+```
+```bash
+go mod init myproject
+go get -u github.com/gin-gonic/gin
+```
 
----
+```
+GO gorm
+```
+
+```bash
+go get gorm.io/gorm
+go get gorm.io/driver/sqlite
+```
+
+```
+Gin → handles request
+Goroutine → handles multiple users
+GORM → stores data in DB
+
+```
+
+```
+task planned
+
+Task 1:
+
+Run goroutine example
+
+Task 2:
+
+Run basic Gin server
+
+Task 3:
+
+Run GORM example (create DB)
+
+Task 4 :
+
+Combine:
+
+Create API to add user
+Store in DB
+
+```
