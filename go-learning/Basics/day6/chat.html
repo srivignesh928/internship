@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Simple Chat</h2>
+
+<input id="msg" placeholder="Type message">
+<button onclick="sendMsg()">Send</button>
+
+<div id="chat"></div>
+
+<script>
+let ws = new WebSocket("ws://localhost:8080/ws");
+
+ws.onopen = () => {
+    addMessage("Connected to server");
+};
+
+ws.onmessage = (msg) => {
+    addMessage(msg.data);
+};
+
+function sendMsg() {
+    let input = document.getElementById("msg");
+    let message = input.value;
+
+    if (message === "") return;
+
+    addMessage("You: " + message);
+
+    ws.send(message);
+    input.value = "";
+}
+
+function addMessage(message) {
+    let chat = document.getElementById("chat");
+    chat.innerHTML += message + "<br>";
+}
+</script>
+
+</body>
+</html>

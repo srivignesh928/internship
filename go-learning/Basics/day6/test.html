@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>WebSocket Test</h2>
+
+<input id="msg" placeholder="Enter message">
+<button onclick="sendMsg()">Send</button>
+
+<p id="output"></p>
+
+<script>
+let ws;
+
+function connect() {
+    ws = new WebSocket("ws://localhost:8080/ws");
+
+    ws.onopen = () => {
+        console.log("Connected");
+        document.getElementById("output").innerHTML += "Connected<br>";
+    };
+
+    ws.onmessage = (msg) => {
+        console.log("Received:", msg.data);
+        document.getElementById("output").innerHTML += msg.data + "<br>";
+    };
+
+    ws.onerror = (err) => {
+        console.log("Error:", err);
+    };
+}
+
+// connect when page loads
+connect();
+
+function sendMsg() {
+    let message = document.getElementById("msg").value;
+
+    if (!ws || ws.readyState !== WebSocket.OPEN) {
+        alert("WebSocket not connected yet!");
+        return;
+    }
+
+    console.log("Sending:", message);
+    ws.send(message);
+}
+</script>
+
+</body>
+</html>
