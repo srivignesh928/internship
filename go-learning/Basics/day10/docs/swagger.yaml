@@ -1,0 +1,69 @@
+basePath: /
+definitions:
+  main.User:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Learning Swagger Documentation in Go.
+  title: Day10 Swagger API
+  version: "1.0"
+paths:
+  /hello:
+    get:
+      description: Returns a hello message
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get Hello Message
+      tags:
+      - Example
+  /user:
+    post:
+      consumes:
+      - application/json
+      description: Adds a new user
+      parameters:
+      - description: User Data
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/main.User'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.User'
+      summary: Create a user
+      tags:
+      - Users
+  /users:
+    get:
+      description: Returns all users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.User'
+            type: array
+      summary: Get all users
+      tags:
+      - Users
+swagger: "2.0"
